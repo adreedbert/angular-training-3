@@ -7,7 +7,7 @@ import { HEROES } from './mock-heroes';
 import { MessageService } from './message.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class HeroService {
 
@@ -15,16 +15,14 @@ export class HeroService {
 
   }
 
+  getHeroes(): Observable<Hero[]> {
+    this.messageService.add('HeroService: fetched heroes');
+    return of(HEROES);
+  }
+
   getHeroes(id: number): Observable<Hero> {
-    // TODO: send the message _after_ fetching the heroes
       this.messageService.add(`HeroService: fetched hero id=${id}`);
     return of(HEROES.find(hero => hero.id === id));
   }
+  
 }
-
-
-/*
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/
